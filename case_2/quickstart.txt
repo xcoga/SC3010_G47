@@ -1,0 +1,10 @@
+1) Start a server using command 'php -S localhost:4000'
+2) in the webbrowser, add in the path to your HTML/php file.
+let say my working dir is /home/SC3010_G47/case_2.
+Then my relative path to add is /php_app/index.php
+
+final_link = 'localhost:4000' + '/php_app/index.php'
+
+e.g. 'localhost:4000/php_app/index.php'
+
+Run the link in the browser

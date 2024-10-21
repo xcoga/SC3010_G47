@@ -1,0 +1,16 @@
+
+Condition:
+- webpage MUST be written in PHP.
+
+
+Attack flow:
+1) Upload the file onto the PHP webpage
+2) There will be a page where the attacker can see his uploaded items
+e.g. https://example.com/uploads/hello_world.txt
+
+3) This is where the attacker realises he can open a PHP webshell.
+
+4) Attacker opens the webshell.
+- The link will fail, since it is an executable that needs input
+- simply add this '?cmd=ls' at the end of the link containing 'malicious.php?'
+- should look like this: 'http://localhost:4000/php_app/uploads/malicious.php?cmd=ls'

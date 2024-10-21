@@ -1,0 +1,21 @@
+
+Condition:
+- webpage MUST be written in PHP.
+
+
+Attack flow:
+1) Upload the file onto the PHP webpage
+2) There will be a page where the attacker can see his uploaded items
+e.g. https://example.com/uploads/hello_world.txt
+
+3) This is where the attacker realises he can open a PHP webshell.
+
+4) The webpage should contain a HTTP GET request such that:
+
+https://example.com/uploads/malicious.php?cmd=ls
+Do note that after the '?' it is the query string in a HTTP GET request.
+
+For PHP interpreter, it will execute the PHP code if it is a PHP file.
+For .txt files, it will simply be displayed.
+
+
