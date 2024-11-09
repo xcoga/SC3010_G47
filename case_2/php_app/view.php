@@ -27,10 +27,16 @@
                 <tr>
                     <td>
 
-            <!--The '?' is the key for the Web Shell attack. It is used to indicate the beginning of a query string.
-            Which is why we can do this 'malicious.php?cmd=ls'-->
-                        <a href="<?php echo $uploadDir . htmlspecialchars($file); ?>">
-                            <?php echo htmlspecialchars($file); ?>
+            <!--The '?' just signifies the end of the PHP block-->
+            <!--htmlspecialchars is to convert special characters into plaintext to prevent scripts in HTML to be executed.
+              For example, <script> alert('Hacked') </script>-->
+
+            <!-- The link will redirect straight to the file. PHP will resort to default handling of different files if not specified.
+             As such, PHP code will be executed. This is how the webshell will be opened.-->
+
+
+                        <a href="<?php echo $uploadDir . $file; ?>">
+                            <?php echo $file; ?>
                         </a>
                     </td>
                     <td>
